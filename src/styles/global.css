@@ -1,0 +1,18 @@
+* {
+  font-family: "YS Text";
+  font-style: normal;
+  outline: none;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}

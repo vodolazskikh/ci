@@ -1,0 +1,35 @@
+:root {
+  --color-background-gray: #f0f2f3;
+  --color-background-accent: #e00000;
+  --color-button-control: #e6e6e6;
+  --color-button-control-hovered: #dbdbdb;
+  --color-button-action: #ffcc00;
+  --color-button-action-hovered: #f2c200;
+  --color-text-gray: #7f8285;
+  --color-text-base: #000000;
+  --color-text-danger: #ff3333;
+  --color-icon-done: #00b341;
+  --color-icon-close: #ff3333;
+  --color-icon-progress: #ff9a00;
+  --color-icon-base: #cecece;
+  --color-border-base: #d9d9d9;
+  --color-border-active: #b3b3b3;
+  --indent-xxxs: 8px;
+  --indent-xxs: 12px;
+  --indent-xs: 16px;
+  --indent-s: 20px;
+  --indent-m: 24px;
+  --indent-l: 100px;
+  --font-size-xxs: 10px;
+  --font-size-xs: 13px;
+  --font-size-s: 15px;
+  --font-size-m: 18px;
+  --font-size-l: 24px;
+  --line-height-xxs: 16px;
+  --line-height-xs: 20px;
+  --line-height-s: 24px;
+  --line-height-m: 28px;
+  --line-height-l: 36px;
+  --border-radius-default: 4px;
+  --border-radius-oval: 6px;
+}
