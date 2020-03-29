@@ -1,7 +1,7 @@
 import React from "react";
 import { css, StyleSheet } from "aphrodite";
-import { Input } from "../input";
-import { Button } from "../button";
+import { Input } from "./input";
+import { Button } from "./button";
 
 export const Popup = ({ onCloseClick }) => {
   return (

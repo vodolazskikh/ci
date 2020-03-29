@@ -8,8 +8,11 @@ import { Home } from "./pages/home";
 import { History } from "./pages/history";
 import { Settings } from "./pages/settings";
 import { Details } from "./pages/details";
+import { useSelector } from "react-redux";
+import { getConfig } from "./selectors/getConfig";
 
 export default function App() {
+  const repoName = useSelector(state => getConfig(state)).repo;
   return (
     <Router>
       <Switch>
@@ -22,9 +25,7 @@ export default function App() {
         <Route path="/build/:id">
           <Details />
         </Route>
-        <Route path="/">
-          <Home />
-        </Route>
+        <Route path="/">{!repoName ? <Home /> : <History />}</Route>
       </Switch>
     </Router>
   );

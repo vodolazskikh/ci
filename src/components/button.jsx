@@ -1,9 +1,9 @@
 import React, { useMemo } from "react";
-import cog from "../../assets/cog.svg";
-import calendar from "../../assets/calendar.svg";
-import close from "../../assets/close.svg";
-import play from "../../assets/play.svg";
-import rebuild from "../../assets/rebuild.svg";
+import cog from "../assets/cog.svg";
+import calendar from "../assets/calendar.svg";
+import close from "../assets/close.svg";
+import play from "../assets/play.svg";
+import rebuild from "../assets/rebuild.svg";
 
 import { StyleSheet, css } from "aphrodite";
 import { Link } from "react-router-dom";

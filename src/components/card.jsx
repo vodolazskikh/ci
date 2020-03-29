@@ -1,14 +1,15 @@
 import React, { useMemo } from "react";
 import { StyleSheet, css } from "aphrodite";
-import commit from "../../assets/commit.svg";
-import user from "../../assets/user.svg";
-import calendar from "../../assets/calendar.svg";
-import timer from "../../assets/timer.svg";
-import inprogress from "../../assets/inprogress.svg";
-import done from "../../assets/done.svg";
-import close from "../../assets/close.svg";
+import commit from "../assets/commit.svg";
+import user from "../assets/user.svg";
+import calendar from "../assets/calendar.svg";
+import timer from "../assets/timer.svg";
+import inprogress from "../assets/inprogress.svg";
+import done from "../assets/done.svg";
+import close from "../assets/close.svg";
 
-export const Card = ({ status = "done", author, id, title, branch, hash }) => {
+export const Card = ({ build }) => {
+  const { status = "done", author, id, title, branch, hash } = build;
   const statusIcon = useMemo(() => {
     switch (status) {
       case "done":

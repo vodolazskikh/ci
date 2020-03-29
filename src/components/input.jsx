@@ -1,7 +1,14 @@
 import React from "react";
 import { css, StyleSheet } from "aphrodite";
 
-export const Input = ({ title, placeholder, isRequired, size, stretched }) => {
+export const Input = ({
+  title,
+  placeholder,
+  isRequired,
+  size,
+  stretched,
+  onChange
+}) => {
   return (
     <>
       <label htmlFor={title} className={css(s.label)}>
@@ -10,6 +17,7 @@ export const Input = ({ title, placeholder, isRequired, size, stretched }) => {
       </label>
       <input
         type="search"
+        onChange={onChange}
         placeholder={placeholder}
         id={title}
         className={css(
