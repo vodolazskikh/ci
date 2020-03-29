@@ -1,9 +1,8 @@
 export const config = (state = [], action) => {
-  console.log("stat", state);
   switch (action.type) {
-    case "GET_CONFIG":
-      return state;
-    case "SET_CONFIG":
+    case "SET_CONFIG_SUCCESS":
+      return { ...state, ...action.payload };
+    case "GET_CONFIG_SUCCESS":
       return { ...state, ...action.payload };
     default:
       return state;

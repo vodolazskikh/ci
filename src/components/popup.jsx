@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { css, StyleSheet } from "aphrodite";
 import { Input } from "./input";
 import { Button } from "./button";
 
 export const Popup = ({ onCloseClick }) => {
+  const [buildId, setBuildId] = useState("");
+  const handleInputChange = useCallback(e => {
+    const value = e.currentTarget.value;
+    setBuildId(value);
+  }, []);
   return (
     <div className={css(s.root)}>
       <div className={css(s.popup)}>
@@ -11,7 +16,11 @@ export const Popup = ({ onCloseClick }) => {
         <div className={css(s.description)}>
           Enter the commit hash which you want to build
         </div>
-        <Input placeholder="Commit hash" stretched />
+        <Input
+          placeholder="Commit hash"
+          stretched
+          onChange={handleInputChange}
+        />
         <div>
           <div className={css(s.firstButton)}>
             <Button
@@ -20,7 +29,7 @@ export const Popup = ({ onCloseClick }) => {
               size="primary"
               type="action"
               link="build"
-              buildId="123"
+              buildId={buildId}
             />
           </div>
           <Button

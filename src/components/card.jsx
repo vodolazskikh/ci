@@ -7,16 +7,24 @@ import timer from "../assets/timer.svg";
 import inprogress from "../assets/inprogress.svg";
 import done from "../assets/done.svg";
 import close from "../assets/close.svg";
+import { Link } from "react-router-dom";
 
 export const Card = ({ build }) => {
-  const { status = "done", author, id, title, branch, hash } = build;
+  const {
+    status = "done",
+    authorName,
+    id,
+    commitMessage,
+    branchName,
+    commitHash
+  } = build;
   const statusIcon = useMemo(() => {
     switch (status) {
       case "done":
         return done;
       case "close":
         return close;
-      case "inprogress":
+      case "Waiting":
         return inprogress;
       default:
         return done;
@@ -29,7 +37,7 @@ export const Card = ({ build }) => {
         return s._done;
       case "close":
         return s._close;
-      case "inprogress":
+      case "Waiting":
         return s._inprogress;
       default:
         return s._done;
@@ -37,39 +45,46 @@ export const Card = ({ build }) => {
   }, [status]);
 
   return (
-    <div className={css(s.card)}>
-      <div className={css(s.main)}>
-        <img src={statusIcon} className={css(s.icon)} alt={status} />
-        <div className={css(s.body)}>
-          <span>
-            <span className={css(statusClass, s.number)}>#{id}</span>
-            {title}
-          </span>
+    <Link
+      to={`/build/${commitHash}`}
+      style={{ textDecoration: "none", color: "inherit" }}
+    >
+      <div className={css(s.card)}>
+        <div className={css(s.main)}>
+          <img src={statusIcon} className={css(s.icon)} alt={status} />
+          <div className={css(s.body)}>
+            <span>
+              <span className={css(statusClass, s.number)}>
+                #{id.slice(0, 4)}
+              </span>
+              {commitMessage}
+            </span>
 
-          <div className={css(s.description)}>
-            <span className={css(s.block)}>
-              <img src={commit} className={css(s.commit)} alt="commit" />
-              <span className={css(s.branch)}>{branch}</span>
-              <span className={css(s.hash)}>{hash}</span>
-            </span>
-            <span className={css(s.block)}>
-              <img src={user} className={css(s.user)} alt="user" />
-              <span>{author}</span>
-            </span>
+            <div className={css(s.description)}>
+              <span className={css(s.block)}>
+                <img src={commit} className={css(s.commit)} alt="commit" />
+                <span className={css(s.branch)}>{branchName}</span>
+                <span className={css(s.hash)}>{commitHash.slice(0, 4)}</span>
+              </span>
+              <span className={css(s.block)}>
+                <img src={user} className={css(s.user)} alt="user" />
+                <span>{authorName}</span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className={css(s.time)}>
+          <div className={css(s.times)}>
+            <img src={calendar} className={css(s.timeIcon)} alt="calendar" />
+            <div>21 янв, 03:06</div>
+          </div>
+          <div className={css(s.times)}>
+            <img src={timer} className={css(s.timeIcon)} alt="timer" />
+            <div>1 ч 20 мин</div>
           </div>
         </div>
       </div>
-      <div className={css(s.time)}>
-        <div className={css(s.times)}>
-          <img src={calendar} className={css(s.timeIcon)} alt="calendar" />
-          <div>21 янв, 03:06</div>
-        </div>
-        <div className={css(s.times)}>
-          <img src={timer} className={css(s.timeIcon)} alt="timer" />
-          <div>1 ч 20 мин</div>
-        </div>
-      </div>
-    </div>
+    </Link>
   );
 };
 
@@ -167,5 +182,8 @@ const s = StyleSheet.create({
     alignItems: "center",
     marginBottom: "var(--indent-xxs)",
     marginRight: "var(--indent-xxxs)"
+  },
+  link: {
+    textВecoration: "none"
   }
 });

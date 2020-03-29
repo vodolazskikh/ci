@@ -14,7 +14,8 @@ const s = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     padding: "var(--indent-xxxs) var(--indent-l)",
-    height: "100%"
+    height: "100%",
+    overflowY: "scroll"
   },
 
   _start: {

@@ -16,7 +16,8 @@ export const Button = ({
   size,
   onClick,
   withoutIcon,
-  buildId
+  buildId,
+  isDisabled
 }) => {
   const icon = useMemo(() => {
     switch (iconType) {
@@ -36,6 +37,9 @@ export const Button = ({
   }, [iconType]);
 
   const typeClass = useMemo(() => {
+    if (isDisabled) {
+      return s._typeBase;
+    }
     switch (type) {
       case "control":
         return s._typeControl;
@@ -46,7 +50,7 @@ export const Button = ({
       default:
         return s._typeBase;
     }
-  }, [type]);
+  }, [type, isDisabled]);
 
   const body = useMemo(() => {
     return (
@@ -56,6 +60,7 @@ export const Button = ({
           typeClass,
           size === "primary" ? s._sizePrimary : s._sizeSecondary
         )}
+        disabled={!!isDisabled}
         onClick={onClick}
       >
         {!withoutIcon && (
@@ -68,7 +73,12 @@ export const Button = ({
         {!!text && <span>{text}</span>}
       </button>
     );
-  }, [onClick, text, icon, size, withoutIcon, typeClass]);
+  }, [onClick, text, icon, size, withoutIcon, typeClass, isDisabled]);
+
+  if (isDisabled) {
+    return body;
+  }
+
   if (!!link && !buildId) {
     return <Link to={`/${link}`}>{body}</Link>;
   }

@@ -12,10 +12,13 @@ export const Details = props => {
   const { id } = useParams();
   const { repo } = useSelector(state => getConfig(state));
   const build = useSelector(state => getBuildById(state, id));
+
   return (
     <>
       <Header hasRebuildButton hasSettingsButton title={repo} />
-      <Container>{build && <Card build={build} />}</Container>
+      <Container>
+        {build ? <Card build={build} /> : "There is no same build"}
+      </Container>
       <Footer />
     </>
   );

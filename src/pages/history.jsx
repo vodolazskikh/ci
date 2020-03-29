@@ -13,10 +13,22 @@ export const History = () => {
   const [isPopupOpened, setIsPopupOpened] = useState(false);
   const builds = useSelector(state => getBuilds(state));
   const config = useSelector(state => getConfig(state));
+  const [splicedBuilds, setSplicedBuilds] = useState([...builds].splice(0, 5));
+  const [isMoreDisplayed, setIsMoreDisplayed] = useState(false);
 
   const closePopup = useCallback(() => {
     return setIsPopupOpened(false);
   }, []);
+
+  const showMore = useCallback(() => {
+    setIsMoreDisplayed(true);
+    setSplicedBuilds(builds);
+  }, [builds]);
+
+  const hideItems = useCallback(() => {
+    setIsMoreDisplayed(false);
+    setSplicedBuilds([...builds].splice(0, 5));
+  }, [builds]);
 
   return (
     <>
@@ -27,10 +39,18 @@ export const History = () => {
         title={config.repo}
       />
       <Container screen="history">
-        {builds.map(build => (
-          <Card build={build} />
+        {splicedBuilds.map(build => (
+          <Card build={build} key={build.id} />
         ))}
-        <Button type="control" size="secondary" text="Show more" />
+        <div>
+          <Button
+            type="control"
+            size="secondary"
+            text={isMoreDisplayed ? "Hide" : "Show more"}
+            onClick={isMoreDisplayed ? hideItems : showMore}
+            isStretched
+          />
+        </div>
       </Container>
       <Footer />
       {isPopupOpened && <Popup onCloseClick={closePopup} />}

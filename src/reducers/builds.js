@@ -1,7 +1,7 @@
 export const builds = (state = [], action) => {
   switch (action.type) {
-    case "GET_BUILDS":
-      return state;
+    case "FETCH_BUILDS_SUCCESS":
+      return [...action.payload.data];
     default:
       return state;
   }

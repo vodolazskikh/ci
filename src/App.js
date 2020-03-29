@@ -2,17 +2,33 @@ import "./styles/theme.css";
 import "./styles/global.css";
 import "./styles/fonts.css";
 
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Home } from "./pages/home";
 import { History } from "./pages/history";
 import { Settings } from "./pages/settings";
 import { Details } from "./pages/details";
-import { useSelector } from "react-redux";
-import { getConfig } from "./selectors/getConfig";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchBuilds } from "./actions/fetchBuilds";
+import { getBuilds } from "./selectors/getBuilds";
+import { getConfig as getConfigAction } from "./actions/getConfig";
 
 export default function App() {
-  const repoName = useSelector(state => getConfig(state)).repo;
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchBuilds(dispatch));
+    dispatch(getConfigAction(dispatch));
+  }, [dispatch]);
+
+  const builds = useSelector(state => getBuilds(state));
+
+  const home = useMemo(() => {
+    if (!builds.length) {
+      return <Home />;
+    } else {
+      return <History />;
+    }
+  }, [builds]);
   return (
     <Router>
       <Switch>
@@ -25,7 +41,7 @@ export default function App() {
         <Route path="/build/:id">
           <Details />
         </Route>
-        <Route path="/">{!repoName ? <Home /> : <History />}</Route>
+        <Route path="/">{home}</Route>
       </Switch>
     </Router>
   );

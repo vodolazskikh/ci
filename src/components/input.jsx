@@ -7,7 +7,8 @@ export const Input = ({
   isRequired,
   size,
   stretched,
-  onChange
+  onChange,
+  initialValue
 }) => {
   return (
     <>
@@ -16,7 +17,8 @@ export const Input = ({
         {isRequired && <span className={css(s.requiredText)}>*</span>}
       </label>
       <input
-        type="search"
+        type={size === "small" ? "number" : "search"}
+        defaultValue={initialValue}
         onChange={onChange}
         placeholder={placeholder}
         id={title}
@@ -54,7 +56,7 @@ const s = StyleSheet.create({
   },
 
   _smallSize: {
-    width: 24,
+    width: 42,
     margin: "0px var(--indent-xxxs)",
     marginBottom: "var(--indent-m)"
   },
