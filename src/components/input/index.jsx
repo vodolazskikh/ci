@@ -1,10 +1,10 @@
 import React from "react";
 import { css, StyleSheet } from "aphrodite";
 
-export const Input = ({ title, placeholder, isRequired, size }) => {
+export const Input = ({ title, placeholder, isRequired, size, stretched }) => {
   return (
     <>
-      <label for={title} className={css(s.label)}>
+      <label htmlFor={title} className={css(s.label)}>
         {title}
         {isRequired && <span className={css(s.requiredText)}>*</span>}
       </label>
@@ -12,7 +12,11 @@ export const Input = ({ title, placeholder, isRequired, size }) => {
         type="search"
         placeholder={placeholder}
         id={title}
-        className={css(s.input, size === "small" ? s._smallSize : s._bigSize)}
+        className={css(
+          s.input,
+          stretched && s._stretched,
+          size === "small" ? s._smallSize : s._bigSize
+        )}
       />
     </>
   );
@@ -45,5 +49,9 @@ const s = StyleSheet.create({
     width: 24,
     margin: "0px var(--indent-xxxs)",
     marginBottom: "var(--indent-m)"
+  },
+
+  _stretched: {
+    width: "100%"
   }
 });

@@ -30,9 +30,9 @@ export const Form = () => {
       </div>
       <div className={css(s.buttonblock)}>
         <div className={css(s.firstButton)}>
-          <Button type="action" size="primary" text="Save" />
+          <Button type="action" size="primary" text="Save" link="history" />
         </div>
-        <Button type="control" size="primary" text="Cancel" link="" />
+        <Button type="control" size="primary" text="Cancel" link=" " />
       </div>
     </div>
   );

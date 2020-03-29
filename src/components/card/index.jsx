@@ -1,40 +1,69 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { StyleSheet, css } from "aphrodite";
 import commit from "../../assets/commit.svg";
 import user from "../../assets/user.svg";
 import calendar from "../../assets/calendar.svg";
 import timer from "../../assets/timer.svg";
+import inprogress from "../../assets/inprogress.svg";
+import done from "../../assets/done.svg";
+import close from "../../assets/close.svg";
 
-export const Card = () => {
+export const Card = ({ status = "done", author, id, title, branch, hash }) => {
+  const statusIcon = useMemo(() => {
+    switch (status) {
+      case "done":
+        return done;
+      case "close":
+        return close;
+      case "inprogress":
+        return inprogress;
+      default:
+        return done;
+    }
+  }, [status]);
+
+  const statusClass = useMemo(() => {
+    switch (status) {
+      case "done":
+        return s._done;
+      case "close":
+        return s._close;
+      case "inprogress":
+        return s._inprogress;
+      default:
+        return s._done;
+    }
+  }, [status]);
+
   return (
     <div className={css(s.card)}>
       <div className={css(s.main)}>
-        <div class="card__icon card__icon-done"></div>
+        <img src={statusIcon} className={css(s.icon)} alt={status} />
         <div className={css(s.body)}>
-          <span class="card__body__title">
-            <span class="card__body__number-type_done">#1368</span>
-            add documentation for postgres scaler
+          <span>
+            <span className={css(statusClass, s.number)}>#{id}</span>
+            {title}
           </span>
 
           <div className={css(s.description)}>
-            <span class="card__description__block">
+            <span className={css(s.block)}>
               <img src={commit} className={css(s.commit)} alt="commit" />
-              <span class="card__description__branch">master</span>
-              <span class="card__description__hash">9c9f0b9</span>
+              <span className={css(s.branch)}>{branch}</span>
+              <span className={css(s.hash)}>{hash}</span>
             </span>
-            <span class="card__description__block">
+            <span className={css(s.block)}>
               <img src={user} className={css(s.user)} alt="user" />
-              <span>Philip Kirkorov</span>
+              <span>{author}</span>
             </span>
           </div>
         </div>
       </div>
       <div className={css(s.time)}>
-        <div class="card__time__item">
+        <div className={css(s.times)}>
           <img src={calendar} className={css(s.timeIcon)} alt="calendar" />
           <div>21 янв, 03:06</div>
         </div>
-        <div class="card__time__item">
+        <div className={css(s.times)}>
           <img src={timer} className={css(s.timeIcon)} alt="timer" />
           <div>1 ч 20 мин</div>
         </div>
@@ -98,6 +127,44 @@ const s = StyleSheet.create({
   timeIcon: {
     width: 16,
     height: 16,
+    marginRight: "var(--indent-xxxs)"
+  },
+  icon: {
+    width: 24,
+    height: 24,
+    display: "inline-flex",
+    marginRight: "var(--indent-xxxs)"
+  },
+  block: {
+    display: "flex",
+    alignItems: "center"
+  },
+  number: {
+    fontWeight: 500,
+    fontSize: "var(--font-size-m)",
+    lineHeight: "var(--line-height-xs)",
+    marginRight: "var(--indent-xxxs)"
+  },
+  _done: {
+    color: "var(--color-icon-done)"
+  },
+  _close: {
+    color: "var(--color-icon-close)"
+  },
+  _inprogress: {
+    color: "var(--color-icon-progress)"
+  },
+  branch: {
+    marginRight: "var(--indent-xxxs)"
+  },
+  hash: {
+    color: "var(--color-text-gray)",
+    marginRight: "var(--indent-xxxs)"
+  },
+  times: {
+    display: "flex",
+    alignItems: "center",
+    marginBottom: "var(--indent-xxs)",
     marginRight: "var(--indent-xxxs)"
   }
 });

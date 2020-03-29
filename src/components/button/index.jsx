@@ -8,7 +8,16 @@ import rebuild from "../../assets/rebuild.svg";
 import { StyleSheet, css } from "aphrodite";
 import { Link } from "react-router-dom";
 
-export const Button = ({ link, text, iconType, type, size }) => {
+export const Button = ({
+  link,
+  text,
+  iconType,
+  type,
+  size,
+  onClick,
+  withoutIcon,
+  buildId
+}) => {
   const icon = useMemo(() => {
     switch (iconType) {
       case "cog":
@@ -26,22 +35,48 @@ export const Button = ({ link, text, iconType, type, size }) => {
     }
   }, [iconType]);
 
-  return (
-    <button
-      className={css(
-        s.root,
-        type === "control" ? s._typeControl : s._typeAction,
-        size === "primary" ? s._sizePrimary : s._sizeSecondary
-      )}
-    >
-      <img
-        src={icon}
-        className={css(s.icon, !!text && s.iconWithText)}
-        alt="icon"
-      />
-      {!!text && <span>{<Link to={`/${link}`}>{text}</Link>}</span>}
-    </button>
-  );
+  const typeClass = useMemo(() => {
+    switch (type) {
+      case "control":
+        return s._typeControl;
+      case "action":
+        return s._typeAction;
+      case "base":
+        return s._typeBase;
+      default:
+        return s._typeBase;
+    }
+  }, [type]);
+
+  const body = useMemo(() => {
+    return (
+      <button
+        className={css(
+          s.root,
+          typeClass,
+          size === "primary" ? s._sizePrimary : s._sizeSecondary
+        )}
+        onClick={onClick}
+      >
+        {!withoutIcon && (
+          <img
+            src={icon}
+            className={css(s.icon, !!text && s.iconWithText)}
+            alt="icon"
+          />
+        )}
+        {!!text && <span>{text}</span>}
+      </button>
+    );
+  }, [onClick, text, icon, size, withoutIcon, typeClass]);
+  if (!!link && !buildId) {
+    return <Link to={`/${link}`}>{body}</Link>;
+  }
+
+  if (!!link && !!buildId) {
+    return <Link to={`/${link}/${buildId}`}>{body}</Link>;
+  }
+  return body;
 };
 
 const s = StyleSheet.create({
@@ -81,6 +116,14 @@ const s = StyleSheet.create({
     },
     ":active": {
       backgroundColor: "var(--color-button-action)"
+    }
+  },
+
+  _typeBase: {
+    backgroundColor: "#fff",
+    boxShadow: "inset 0 0 0 2px var(--color-button-control)",
+    ":hover": {
+      backgroundColor: "var(--color-button-control)"
     }
   },
 

@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Home } from "./pages/home";
 import { History } from "./pages/history";
 import { Settings } from "./pages/settings";
+import { Details } from "./pages/details";
 
 export default function App() {
   return (
@@ -17,6 +18,9 @@ export default function App() {
         </Route>
         <Route path="/history">
           <History />
+        </Route>
+        <Route path="/build/:id">
+          <Details />
         </Route>
         <Route path="/">
           <Home />

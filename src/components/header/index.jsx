@@ -4,14 +4,17 @@ import { StyleSheet, css } from "aphrodite";
 
 export const Header = ({
   hasSettingsButton,
-  repoName = "Мое репо",
+  title,
   hasSettingsButtonText,
   hasBuildButton,
-  hasRebuildButton
+  hasRebuildButton,
+  onBuildButtonClick
 }) => {
   return (
     <header className={css(s.root)}>
-      <span className={css(s.title)}>{repoName || "School CI server"}</span>
+      <span className={css(s.title, title && s._repoTitle)}>
+        {title || "School CI server"}
+      </span>
       <span>
         {hasBuildButton && (
           <span className={css(s.buttonblockButton)}>
@@ -20,6 +23,7 @@ export const Header = ({
               size="secondary"
               type="control"
               iconType="play"
+              onClick={onBuildButtonClick}
             />
           </span>
         )}
@@ -39,6 +43,7 @@ export const Header = ({
             text={hasSettingsButtonText && "Settings"}
             size="secondary"
             type="control"
+            link="settings"
           />
         )}
       </span>
@@ -77,6 +82,10 @@ const s = StyleSheet.create({
 
   buttonblockButton: {
     marginRight: "var(--indent-xxxs)"
+  },
+
+  _repoTitle: {
+    color: "var(--color-text-base)"
   }
 
   // @media (max-width: 768px) {
