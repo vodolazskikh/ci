@@ -17,7 +17,8 @@ export const Button = ({
   onClick,
   withoutIcon,
   buildId,
-  isDisabled
+  isDisabled,
+  id,
 }) => {
   const icon = useMemo(() => {
     switch (iconType) {
@@ -60,6 +61,7 @@ export const Button = ({
           typeClass,
           size === "primary" ? s._sizePrimary : s._sizeSecondary
         )}
+        id={id}
         disabled={!!isDisabled}
         onClick={onClick}
       >
@@ -97,53 +99,53 @@ const s = StyleSheet.create({
     alignItems: "center",
     border: "none",
     userSelect: "none",
-    cursor: "pointer"
+    cursor: "pointer",
   },
 
   icon: {
     width: 12,
-    height: 12
+    height: 12,
   },
 
   iconWithText: {
-    marginRight: "var(--indent-xxxs)"
+    marginRight: "var(--indent-xxxs)",
   },
 
   _sizePrimary: {
     padding: "0 var(--indent-s)",
-    lineHeight: "var(--line-height-l)"
+    lineHeight: "var(--line-height-l)",
   },
 
   _sizeSecondary: {
     padding: "0 var(--indent-xxxs)",
-    lineHeight: "var(--line-height-m)"
+    lineHeight: "var(--line-height-m)",
   },
 
   _typeAction: {
     backgroundColor: "var(--color-button-action)",
     ":hover": {
-      backgroundColor: "var(--color-button-action-hovered)"
+      backgroundColor: "var(--color-button-action-hovered)",
     },
     ":active": {
-      backgroundColor: "var(--color-button-action)"
-    }
+      backgroundColor: "var(--color-button-action)",
+    },
   },
 
   _typeBase: {
     backgroundColor: "#fff",
     boxShadow: "inset 0 0 0 2px var(--color-button-control)",
     ":hover": {
-      backgroundColor: "var(--color-button-control)"
-    }
+      backgroundColor: "var(--color-button-control)",
+    },
   },
 
   _typeControl: {
     backgroundColor: "var(--color-button-control)",
     ":hover": {
-      backgroundColor: "var(--color-button-control-hovered)"
+      backgroundColor: "var(--color-button-control-hovered)",
     },
     ":active": {
-      backgroundColor: "var(--color-button-control)"
-    }
-  }
+      backgroundColor: "var(--color-button-control)",
+    },
+  },
 });

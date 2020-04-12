@@ -10,7 +10,7 @@ export const Home = () => {
   return (
     <>
       <Header hasSettingsButton hasSettingsButtonText />
-      <Container screen="start">
+      <Container screen="start" id="mainPage">
         <img src={tools} className={css(s.tools)} alt="tools" />
         <p className={css(s.text)}>
           Configure repository connection
@@ -33,11 +33,11 @@ const s = StyleSheet.create({
   tools: {
     width: 124,
     height: 124,
-    marginBottom: "var(--indent-xxxs)"
+    marginBottom: "var(--indent-xxxs)",
   },
   text: {
     textAlign: "center",
     fontSize: "var(--font-size-s)",
-    marginBottom: "var(--indent-m)"
-  }
+    marginBottom: "var(--indent-m)",
+  },
 });

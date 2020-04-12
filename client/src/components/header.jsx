@@ -8,11 +8,11 @@ export const Header = ({
   hasSettingsButtonText,
   hasBuildButton,
   hasRebuildButton,
-  onBuildButtonClick
+  onBuildButtonClick,
 }) => {
   return (
     <header className={css(s.root)}>
-      <span className={css(s.title, title && s._repoTitle)}>
+      <span className={css(s.title, title && s._repoTitle)} id="title">
         {title || "School CI server"}
       </span>
       <span>
@@ -24,6 +24,7 @@ export const Header = ({
               type="control"
               iconType="play"
               onClick={onBuildButtonClick}
+              id="runbuildButton"
             />
           </span>
         )}
@@ -34,6 +35,7 @@ export const Header = ({
               size="secondary"
               type="control"
               iconType="rebuild"
+              id="rebuildButton"
             />
           </span>
         )}
@@ -44,6 +46,7 @@ export const Header = ({
             size="secondary"
             type="control"
             link="settings"
+            id="settingsButton"
           />
         )}
       </span>
@@ -59,7 +62,7 @@ const s = StyleSheet.create({
     flexDirection: "row",
     padding: "var(--indent-xxxs) var(--indent-l)",
     marginBottom: "var(--indent-xxxs)",
-    height: 48
+    height: 48,
   },
 
   title: {
@@ -69,24 +72,24 @@ const s = StyleSheet.create({
     fontSize: "var(--font-size-l)",
     lineHeight: 28,
     color: "var(--color-text-gray)",
-    wordBreak: "break-all"
+    wordBreak: "break-all",
   },
 
   titleMain: {
-    color: "var(--color-text-base)"
+    color: "var(--color-text-base)",
   },
 
   buttonblock: {
-    display: "flex"
+    display: "flex",
   },
 
   buttonblockButton: {
-    marginRight: "var(--indent-xxxs)"
+    marginRight: "var(--indent-xxxs)",
   },
 
   _repoTitle: {
-    color: "var(--color-text-base)"
-  }
+    color: "var(--color-text-base)",
+  },
 
   // @media (max-width: 768px) {
   //   .header {

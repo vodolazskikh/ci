@@ -11,8 +11,8 @@ import { getConfig } from "../selectors/getConfig";
 
 export const History = () => {
   const [isPopupOpened, setIsPopupOpened] = useState(false);
-  const builds = useSelector(state => getBuilds(state));
-  const config = useSelector(state => getConfig(state));
+  const builds = useSelector((state) => getBuilds(state));
+  const config = useSelector((state) => getConfig(state));
   const [splicedBuilds, setSplicedBuilds] = useState([...builds].splice(0, 5));
   const [isMoreDisplayed, setIsMoreDisplayed] = useState(false);
 
@@ -38,9 +38,9 @@ export const History = () => {
         onBuildButtonClick={setIsPopupOpened}
         title={config.repo}
       />
-      <Container screen="history">
-        {splicedBuilds.map(build => (
-          <Card build={build} key={build.id} />
+      <Container screen="history" id="mainPage">
+        {splicedBuilds.map((build, index) => (
+          <Card build={build} key={build.id} atrId={index} />
         ))}
         <div>
           <Button

@@ -8,29 +8,29 @@ import { getConfig } from "../selectors/getConfig";
 
 export const Form = () => {
   const dispatch = useDispatch();
-  const config = useSelector(state => getConfig(state));
+  const config = useSelector((state) => getConfig(state));
 
   const [branch, setBranch] = useState(config.mainBranch);
   const [repo, setRepo] = useState(config.repoName);
   const [command, setCommand] = useState(config.buildCommand);
   const [period, setPeriod] = useState(config.period);
 
-  const handleInputBranchChange = useCallback(e => {
+  const handleInputBranchChange = useCallback((e) => {
     const value = e.currentTarget.value;
     setBranch(value);
   }, []);
 
-  const handleInputRepoChange = useCallback(e => {
+  const handleInputRepoChange = useCallback((e) => {
     const value = e.currentTarget.value;
     setRepo(value);
   }, []);
 
-  const handleInputCommantChange = useCallback(e => {
+  const handleInputCommantChange = useCallback((e) => {
     const value = e.currentTarget.value;
     setCommand(value);
   }, []);
 
-  const handleInputPeriodChange = useCallback(e => {
+  const handleInputPeriodChange = useCallback((e) => {
     const value = e.currentTarget.value;
     setPeriod(value);
   }, []);
@@ -87,6 +87,7 @@ export const Form = () => {
             link="history"
             onClick={handleSaveClick}
             isDisabled={!branch || !repo || !command}
+            id="saveSettingsButton"
           />
         </div>
         <Button
@@ -94,6 +95,7 @@ export const Form = () => {
           size="primary"
           text="Cancel"
           link={!config.repoName ? " " : "history"}
+          id="closeSettingsButton"
         />
       </div>
     </div>
@@ -103,33 +105,33 @@ export const Form = () => {
 const s = StyleSheet.create({
   form: {
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
   },
   title: {
     fontWeight: "bold",
     fontSize: "var(--font-size-s)",
     lineHeight: "var(--line-height-xs)",
-    marginBottom: "var(--indent-xxxs)"
+    marginBottom: "var(--indent-xxxs)",
   },
   description: {
     marginBottom: "var(--indent-s)",
     fontSize: "var(--font-size-xs)",
     lineHeight: "var(--line-height-xxs)",
-    color: "var(--color-text-gray)"
+    color: "var(--color-text-gray)",
   },
   time: {
     display: "flex",
     flexDirection: "row",
-    alignItems: "baseline"
+    alignItems: "baseline",
   },
   text: {
     fontSize: "var(--font-size-xs)",
-    lineHeight: "var(--line-height-xxs)"
+    lineHeight: "var(--line-height-xxs)",
   },
   buttonblock: {
-    display: "flex"
+    display: "flex",
   },
   firstButton: {
-    marginRight: "var(--indent-xxxs)"
-  }
+    marginRight: "var(--indent-xxxs)",
+  },
 });

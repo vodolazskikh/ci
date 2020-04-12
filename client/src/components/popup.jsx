@@ -5,13 +5,13 @@ import { Button } from "./button";
 
 export const Popup = ({ onCloseClick }) => {
   const [buildId, setBuildId] = useState("");
-  const handleInputChange = useCallback(e => {
+  const handleInputChange = useCallback((e) => {
     const value = e.currentTarget.value;
     setBuildId(value);
   }, []);
   return (
     <div className={css(s.root)}>
-      <div className={css(s.popup)}>
+      <div className={css(s.popup)} id="newBuildPopup">
         <div className={css(s.title)}>New build</div>
         <div className={css(s.description)}>
           Enter the commit hash which you want to build
@@ -54,7 +54,7 @@ const s = StyleSheet.create({
     background: "rgba(0,0,0, 0.5)",
     display: "flex",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   popup: {
     width: "50%",
@@ -62,16 +62,16 @@ const s = StyleSheet.create({
     borderRadius: "var(--border-radius-default)",
     padding: "var(--indent-m) var(--indent-xs)",
     maxWidth: 490,
-    boxSizing: "border-box"
+    boxSizing: "border-box",
   },
   description: {
-    padding: "var(--indent-xs) 0"
+    padding: "var(--indent-xs) 0",
   },
   firstButton: {
     marginRight: "var(--indent-xxxs)",
-    display: "inline-flex"
+    display: "inline-flex",
   },
   title: {
-    fontWeight: 500
-  }
+    fontWeight: 500,
+  },
 });

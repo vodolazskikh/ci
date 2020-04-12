@@ -9,14 +9,14 @@ import done from "../assets/done.svg";
 import close from "../assets/close.svg";
 import { Link } from "react-router-dom";
 
-export const Card = ({ build }) => {
+export const Card = ({ build, atrId }) => {
   const {
     status = "done",
     authorName,
     id,
     commitMessage,
     branchName,
-    commitHash
+    commitHash,
   } = build;
   const statusIcon = useMemo(() => {
     switch (status) {
@@ -49,7 +49,7 @@ export const Card = ({ build }) => {
       to={`/build/${commitHash}`}
       style={{ textDecoration: "none", color: "inherit" }}
     >
-      <div className={css(s.card)}>
+      <div className={css(s.card)} id={`card_${atrId}`}>
         <div className={css(s.main)}>
           <img src={statusIcon} className={css(s.icon)} alt={status} />
           <div className={css(s.body)}>
@@ -101,89 +101,89 @@ const s = StyleSheet.create({
     marginBottom: "var(--indent-xxxs)",
     ":hover": {
       boxShadow:
-        "0px 2px 8px rgba(67, 68, 69, 0.3), 0px 0px 1px rgba(67, 68, 69, 0.3)"
-    }
+        "0px 2px 8px rgba(67, 68, 69, 0.3), 0px 0px 1px rgba(67, 68, 69, 0.3)",
+    },
   },
   main: {
     display: "flex",
-    flexDirection: "row"
+    flexDirection: "row",
   },
   body: {
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-start",
     width: "100%",
-    marginBottom: "var(--indent-xxxs)"
+    marginBottom: "var(--indent-xxxs)",
   },
   title: {
     marginBottom: "var(--indent-xxxs)",
-    wordBreak: "break-all"
+    wordBreak: "break-all",
   },
   description: {
     fontSize: "var(--font-size-xs)",
     lineHeight: "var(--line-height-xxs)",
     display: "flex",
     alignItems: "center",
-    marginBottom: "var(--indent-xxxs)"
+    marginBottom: "var(--indent-xxxs)",
   },
   time: {
     display: "flex",
     flexDirection: "column",
-    color: "var(--color-text-gray)"
+    color: "var(--color-text-gray)",
   },
   commit: {
     width: 16,
-    marginRight: "var(--indent-xxxs)"
+    marginRight: "var(--indent-xxxs)",
   },
   user: {
     width: 14,
     height: 16,
-    marginRight: "var(--indent-xxxs)"
+    marginRight: "var(--indent-xxxs)",
   },
   timeIcon: {
     width: 16,
     height: 16,
-    marginRight: "var(--indent-xxxs)"
+    marginRight: "var(--indent-xxxs)",
   },
   icon: {
     width: 24,
     height: 24,
     display: "inline-flex",
-    marginRight: "var(--indent-xxxs)"
+    marginRight: "var(--indent-xxxs)",
   },
   block: {
     display: "flex",
-    alignItems: "center"
+    alignItems: "center",
   },
   number: {
     fontWeight: 500,
     fontSize: "var(--font-size-m)",
     lineHeight: "var(--line-height-xs)",
-    marginRight: "var(--indent-xxxs)"
+    marginRight: "var(--indent-xxxs)",
   },
   _done: {
-    color: "var(--color-icon-done)"
+    color: "var(--color-icon-done)",
   },
   _close: {
-    color: "var(--color-icon-close)"
+    color: "var(--color-icon-close)",
   },
   _inprogress: {
-    color: "var(--color-icon-progress)"
+    color: "var(--color-icon-progress)",
   },
   branch: {
-    marginRight: "var(--indent-xxxs)"
+    marginRight: "var(--indent-xxxs)",
   },
   hash: {
     color: "var(--color-text-gray)",
-    marginRight: "var(--indent-xxxs)"
+    marginRight: "var(--indent-xxxs)",
   },
   times: {
     display: "flex",
     alignItems: "center",
     marginBottom: "var(--indent-xxs)",
-    marginRight: "var(--indent-xxxs)"
+    marginRight: "var(--indent-xxxs)",
   },
   link: {
-    textВecoration: "none"
-  }
+    textВecoration: "none",
+  },
 });
