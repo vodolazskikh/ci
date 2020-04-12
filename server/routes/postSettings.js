@@ -29,8 +29,10 @@ module.exports = function (app, axiosInstance) {
           });
         } catch (error) {
           console.log(
-            "Произошла ошибка или такой репозиторий уже склонирован!"
+            "Произошла ошибка или такой репозиторий уже склонирован или он не существует!"
           );
+          // В случае ошибки вернем 404
+          return res.status(404).end();
         }
         return res.send(`Данные обновлены - ${response.config.data}`);
       })

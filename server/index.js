@@ -21,7 +21,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
-    extended: true
+    extended: true,
   })
 );
 
@@ -35,10 +35,12 @@ require("./routes/getLogs")(app, axiosInstance);
 require("./routes/postBuild")(app, axiosInstance, myEventEmitter);
 
 // Раз в 10 секунд проверяем, есть ли новые коммиты
-setInterval(function() {
+setInterval(function () {
   checkNewCommits(myEventEmitter);
 }, 10000);
 
-app.listen(port, function() {
+app.listen(port, function () {
   console.log(`Сервер запущен на ${port} порту!`);
 });
+
+module.exports = { app, axiosInstance };

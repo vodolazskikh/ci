@@ -2,8 +2,8 @@ const token = process.env.TOKEN;
 const dbApiUrl = process.env.DB_API_URL;
 const state = require("../state");
 
-module.exports = function(app, axiosInstance, myEventEmitter) {
-  myEventEmitter.on("newCommit", commitData => {
+module.exports = function (app, axiosInstance, myEventEmitter) {
+  myEventEmitter.on("newCommit", (commitData) => {
     state.builds.push({ commitHash: commitData.commit });
     console.log("Новый коммит добавлен в очередь");
     return makeReq(
@@ -15,7 +15,7 @@ module.exports = function(app, axiosInstance, myEventEmitter) {
     );
   });
 
-  app.post("/api/builds/:commitHash", function(req, res) {
+  app.post("/api/builds/:commitHash", function (req, res) {
     const { commitHash } = req.params;
     const { commitMessage, branchName, authorName } = req.body;
 
@@ -45,14 +45,14 @@ const makeReq = (
         commitMessage,
         commitHash,
         branchName,
-        authorName
+        authorName,
       },
       { headers: { Authorization: `Bearer ${token}` } }
     )
-    .then(response => {
+    .then((response) => {
       if (!res) {
         return;
       }
       return res.send(response.data);
     })
-    .catch(err => console.log("Ошибочка - ", err));
+    .catch((err) => console.log("Ошибочка - ", err));
