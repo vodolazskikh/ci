@@ -1,8 +1,9 @@
+import { state } from "../state";
+require("dotenv").config();
 const token = process.env.TOKEN;
 const dbApiUrl = process.env.DB_API_URL;
-const state = require("../state");
 
-module.exports = function (app, axiosInstance, myEventEmitter) {
+export function postBuild(app, axiosInstance, myEventEmitter) {
   myEventEmitter.on("newCommit", (commitData) => {
     state.builds.push({ commitHash: commitData.commit });
     console.log("Новый коммит добавлен в очередь");
@@ -28,15 +29,15 @@ module.exports = function (app, axiosInstance, myEventEmitter) {
       res
     );
   });
-};
+}
 
 const makeReq = (
   axiosInstance,
-  commitMessage,
-  commitHash,
-  branchName,
-  authorName,
-  res
+  commitMessage: string,
+  commitHash: string,
+  branchName: string,
+  authorName: string,
+  res?: any
 ) =>
   axiosInstance
     .post(

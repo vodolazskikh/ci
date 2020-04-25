@@ -1,7 +1,8 @@
+require("dotenv").config();
 const token = process.env.TOKEN;
 const dbApiUrl = process.env.DB_API_URL;
 
-module.exports = function (app, axiosInstance) {
+export function getCurrentBuild(app, axiosInstance) {
   app.get("/api/builds/:buildId", function (req, res) {
     const { buildId } = req.params;
 
@@ -12,4 +13,4 @@ module.exports = function (app, axiosInstance) {
       .then((response) => res.send(response.data))
       .catch((error) => res.send(error));
   });
-};
+}

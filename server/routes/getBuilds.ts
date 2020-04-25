@@ -1,10 +1,10 @@
+import { state } from "../state";
+require("dotenv").config();
 const token = process.env.TOKEN;
 const dbApiUrl = process.env.DB_API_URL;
-const state = require("../state");
 
-module.exports = function (app, axiosInstance) {
+export function getBuilds(app, axiosInstance) {
   app.get("/api/builds", function (req, res) {
-    console.log("token", `${dbApiUrl}api/build/list?limit=25`);
     axiosInstance
       .get(`${dbApiUrl}api/build/list?limit=25`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -16,4 +16,4 @@ module.exports = function (app, axiosInstance) {
       })
       .catch((err) => res.send(`Ошибка ${err}`));
   });
-};
+}

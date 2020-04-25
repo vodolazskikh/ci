@@ -9,6 +9,7 @@ export const fetchBuilds = () => {
     axios
       .get(`http://localhost:5000/api/builds`)
       .then((res) => {
+        console.log("res", res);
         dispatch(fetchBuildsSuccess(res.data));
       })
       .catch((err) => {

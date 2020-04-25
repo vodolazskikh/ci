@@ -1,10 +1,11 @@
+import { state } from "../state";
+import { execSync } from "child_process";
+import * as path from "path";
+require("dotenv").config();
 const token = process.env.TOKEN;
 const dbApiUrl = process.env.DB_API_URL;
-const state = require("../state");
-const path = require("path");
-const { execSync } = require("child_process");
 
-module.exports = function (app, axiosInstance) {
+export function postSettings(app, axiosInstance) {
   app.post("/api/settings", function (req, res) {
     const { repoName, buildCommand, mainBranch, period } = req.body;
     axiosInstance
@@ -38,4 +39,4 @@ module.exports = function (app, axiosInstance) {
       })
       .catch((err) => console.log("Ошибочка - ", err.response));
   });
-};
+}

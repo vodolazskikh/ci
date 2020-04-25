@@ -1,8 +1,8 @@
-const { exec } = require("child_process");
-const state = require("../state");
-const path = require("path");
+import { exec } from "child_process";
+import { state } from "../state";
+import * as path from "path";
 
-const checkNewCommits = myEventEmitter => {
+export function checkNewCommits(myEventEmitter) {
   // Директория, куда был клонирован репозиторий
   const dir = !!state.repo
     ? `../../${state.repo.match(/([\d\w.-]+?)(\.git)?$/)[1]}`
@@ -11,7 +11,7 @@ const checkNewCommits = myEventEmitter => {
   const resolvedDir = `${path.resolve(__dirname, dir)}`;
 
   // Проверяем новые коммиты в дочернем процессе
-  exec(`git -C ${resolvedDir} log`, function(error, stdout, stderr) {
+  exec(`git -C ${resolvedDir} log`, function (error, stdout, stderr) {
     if (error) {
       console.log("Ошибка чтения коммитов!");
       return;
@@ -24,10 +24,10 @@ const checkNewCommits = myEventEmitter => {
     const author = commits[0].match(/Author:\s([^<]+)?/);
     const comment = commits[0].match(/\n\n\s*(.+)/);
 
-    resCommit = {
+    const resCommit = {
       commit: commit[0],
       author: author[1],
-      comment: comment[1]
+      comment: comment[1],
     };
 
     if (!state.builds.length) {
@@ -37,7 +37,7 @@ const checkNewCommits = myEventEmitter => {
     }
 
     const hasBuildAlready = !!state.builds.filter(
-      build => build.commitHash === resCommit.commit
+      (build) => build.commitHash === resCommit.commit
     ).length;
 
     if (hasBuildAlready) {
@@ -47,6 +47,4 @@ const checkNewCommits = myEventEmitter => {
     // Если билда в очереди нет - эмитим событие, чтобы положить билд в очередь
     myEventEmitter.emit("newCommit", resCommit);
   });
-};
-
-module.exports = checkNewCommits;
+}
