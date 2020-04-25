@@ -9,19 +9,19 @@ interface State {
 }
 
 export type Build = {
-  id: string;
-  configurationId: string;
-  buildNumber: number;
-  commitMessage: string;
   commitHash: string;
-  branchName: string;
-  authorName: string;
-  status: string;
-  start: string;
-  duration: number;
+  id?: string;
+  configurationId?: string;
+  buildNumber?: number;
+  commitMessage?: string;
+  branchName?: string;
+  authorName?: string;
+  status?: string;
+  start?: string;
+  duration?: number;
 };
 
-export const state = {
+export const state: State = {
   builds: [],
   branch: "master",
   repo: undefined,
