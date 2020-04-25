@@ -1,9 +1,13 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, FC } from "react";
 import { css, StyleSheet } from "aphrodite";
 import { Input } from "./input";
 import { Button } from "./button";
 
-export const Popup = ({ onCloseClick }) => {
+interface OwnProps {
+  onCloseClick: () => void;
+}
+
+export const Popup: FC<OwnProps> = ({ onCloseClick }) => {
   const [buildId, setBuildId] = useState("");
   const handleInputChange = useCallback((e) => {
     const value = e.currentTarget.value;

@@ -16,11 +16,11 @@ import { getConfig as getConfigAction } from "./actions/getConfig";
 export default function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchBuilds(dispatch));
-    dispatch(getConfigAction(dispatch));
+    dispatch(fetchBuilds());
+    dispatch(getConfigAction());
   }, [dispatch]);
 
-  const builds = useSelector(state => getBuilds(state));
+  const builds = useSelector(getBuilds);
 
   const home = useMemo(() => {
     if (!builds.length) {

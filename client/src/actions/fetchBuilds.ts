@@ -1,34 +1,36 @@
 import axios from "axios";
+import { Dispatch } from "redux";
+import { Build } from "../types/state";
 
 export const fetchBuilds = () => {
-  return dispatch => {
+  return (dispatch: Dispatch) => {
     dispatch(fetchBuildsStarted());
 
     axios
       .get(`http://localhost:5000/api/builds`)
-      .then(res => {
+      .then((res) => {
         dispatch(fetchBuildsSuccess(res.data));
       })
-      .catch(err => {
+      .catch((err) => {
         dispatch(fetchBuildsFailure(err.message));
       });
   };
 };
 
 const fetchBuildsStarted = () => ({
-  type: "FETCH_BUILDS_STARTED"
+  type: "FETCH_BUILDS_STARTED",
 });
 
-const fetchBuildsSuccess = builds => ({
+const fetchBuildsSuccess = (builds: Build[]) => ({
   type: "FETCH_BUILDS_SUCCESS",
   payload: {
-    ...builds
-  }
+    ...builds,
+  },
 });
 
-const fetchBuildsFailure = error => ({
+const fetchBuildsFailure = (error: Error) => ({
   type: "FETCH_BUILDS_FAILURE",
   payload: {
-    error
-  }
+    error,
+  },
 });

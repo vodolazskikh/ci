@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, FC } from "react";
 import { StyleSheet, css } from "aphrodite";
 import { Input } from "./input";
 import { Button } from "./button";
@@ -6,9 +6,9 @@ import { setConfig } from "../actions/setConfig";
 import { useDispatch, useSelector } from "react-redux";
 import { getConfig } from "../selectors/getConfig";
 
-export const Form = () => {
+export const Form: FC = () => {
   const dispatch = useDispatch();
-  const config = useSelector((state) => getConfig(state));
+  const config = useSelector(getConfig);
 
   const [branch, setBranch] = useState(config.mainBranch);
   const [repo, setRepo] = useState(config.repoName);
@@ -70,7 +70,6 @@ export const Form = () => {
       <div className={css(s.time)}>
         <span className={css(s.text)}>Synchronize every</span>
         <Input
-          type="text"
           size="small"
           placeholder="2"
           onChange={handleInputPeriodChange}

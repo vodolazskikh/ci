@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { Footer } from "../components/footer";
 import { Header } from "../components/header";
 import { Button } from "../components/button";
@@ -6,7 +6,7 @@ import { Container } from "../components/container";
 import tools from "../assets/tools.svg";
 import { css, StyleSheet } from "aphrodite";
 
-export const Home = () => {
+export const Home: FC = () => {
   return (
     <>
       <Header hasSettingsButton hasSettingsButtonText />

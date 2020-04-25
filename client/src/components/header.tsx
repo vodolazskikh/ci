@@ -1,8 +1,17 @@
-import React from "react";
+import React, { FC } from "react";
 import { Button } from "./button";
 import { StyleSheet, css } from "aphrodite";
 
-export const Header = ({
+interface OwnProps {
+  title?: string;
+  hasSettingsButtonText?: boolean;
+  hasBuildButton?: boolean;
+  hasRebuildButton?: boolean;
+  hasSettingsButton?: boolean;
+  onBuildButtonClick?: any;
+}
+
+export const Header: FC<OwnProps> = ({
   hasSettingsButton,
   title,
   hasSettingsButtonText,
@@ -12,7 +21,7 @@ export const Header = ({
 }) => {
   return (
     <header className={css(s.root)}>
-      <span className={css(s.title, title && s._repoTitle)} id="title">
+      <span className={css(s.title, !!title && s._repoTitle)} id="title">
         {title || "School CI server"}
       </span>
       <span>
@@ -42,7 +51,7 @@ export const Header = ({
 
         {hasSettingsButton && (
           <Button
-            text={hasSettingsButtonText && "Settings"}
+            text={hasSettingsButtonText ? "Settings" : undefined}
             size="secondary"
             type="control"
             link="settings"

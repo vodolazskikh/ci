@@ -1,7 +1,12 @@
-import React from "react";
+import React, { FC } from "react";
 import { StyleSheet, css } from "aphrodite";
 
-export const Container = ({ children, screen, id }) => {
+interface OwnProps {
+  screen?: "start" | "history" | "settings";
+  id?: string;
+}
+
+export const Container: FC<OwnProps> = ({ children, screen, id }) => {
   return (
     <article
       className={css(s.root, screen === "start" && s._start)}

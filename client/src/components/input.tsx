@@ -1,14 +1,24 @@
-import React from "react";
+import React, { FC } from "react";
 import { css, StyleSheet } from "aphrodite";
 
-export const Input = ({
+interface OwnProps {
+  title?: string;
+  placeholder: string;
+  isRequired?: boolean;
+  size?: string;
+  stretched?: boolean;
+  onChange: (e: any) => void;
+  initialValue?: string | number;
+}
+
+export const Input: FC<OwnProps> = ({
   title,
   placeholder,
   isRequired,
   size,
   stretched,
   onChange,
-  initialValue
+  initialValue,
 }) => {
   return (
     <>
@@ -34,10 +44,10 @@ export const Input = ({
 
 const s = StyleSheet.create({
   label: {
-    marginBottom: "var(--indent-xxxs)"
+    marginBottom: "var(--indent-xxxs)",
   },
   requiredText: {
-    color: "var(--color-text-danger)"
+    color: "var(--color-text-danger)",
   },
   input: {
     marginBottom: "var(--indent-s)",
@@ -48,20 +58,20 @@ const s = StyleSheet.create({
     lineHeight: "var(--line-height-xxs)",
 
     ":focus": {
-      border: "2px solid var(--color-border-active)"
-    }
+      border: "2px solid var(--color-border-active)",
+    },
   },
   _bigSize: {
-    maxWidth: 474
+    maxWidth: 474,
   },
 
   _smallSize: {
     width: 42,
     margin: "0px var(--indent-xxxs)",
-    marginBottom: "var(--indent-m)"
+    marginBottom: "var(--indent-m)",
   },
 
   _stretched: {
-    width: "100%"
-  }
+    width: "100%",
+  },
 });

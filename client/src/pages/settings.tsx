@@ -1,10 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
 import { Header } from "../components/header";
 import { Container } from "../components/container";
 import { Footer } from "../components/footer";
 import { Form } from "../components/form";
 
-export const Settings = () => {
+export const Settings: FC = () => {
   return (
     <>
       <Header />

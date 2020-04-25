@@ -1,34 +1,36 @@
 import axios from "axios";
+import { Dispatch } from "redux";
+import { Config } from "../types/state";
 
 export const getConfig = () => {
-  return dispatch => {
+  return (dispatch: Dispatch) => {
     dispatch(getConfigStarted());
 
     axios
       .get(`http://localhost:5000/api/settings`)
-      .then(res => {
+      .then((res) => {
         dispatch(getConfigSuccess(res.data));
       })
-      .catch(err => {
+      .catch((err) => {
         dispatch(getConfigFailure(err.message));
       });
   };
 };
 
 const getConfigStarted = () => ({
-  type: "SET_CONFIG_STARTED"
+  type: "SET_CONFIG_STARTED",
 });
 
-const getConfigSuccess = settings => ({
+const getConfigSuccess = (settings: { data: Config }) => ({
   type: "GET_CONFIG_SUCCESS",
   payload: {
-    ...settings.data
-  }
+    ...settings.data,
+  },
 });
 
-const getConfigFailure = error => ({
+const getConfigFailure = (error: Error) => ({
   type: "GET_CONFIG_FAILURE",
   payload: {
-    error
-  }
+    error,
+  },
 });

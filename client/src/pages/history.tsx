@@ -11,8 +11,8 @@ import { getConfig } from "../selectors/getConfig";
 
 export const History = () => {
   const [isPopupOpened, setIsPopupOpened] = useState(false);
-  const builds = useSelector((state) => getBuilds(state));
-  const config = useSelector((state) => getConfig(state));
+  const builds = useSelector(getBuilds);
+  const config = useSelector(getConfig);
   const [splicedBuilds, setSplicedBuilds] = useState([...builds].splice(0, 5));
   const [isMoreDisplayed, setIsMoreDisplayed] = useState(false);
 
@@ -36,7 +36,7 @@ export const History = () => {
         hasSettingsButton
         hasBuildButton
         onBuildButtonClick={setIsPopupOpened}
-        title={config.repo}
+        title={config.repoName}
       />
       <Container screen="history" id="mainPage">
         {splicedBuilds.map((build, index) => (
@@ -48,7 +48,6 @@ export const History = () => {
             size="secondary"
             text={isMoreDisplayed ? "Hide" : "Show more"}
             onClick={isMoreDisplayed ? hideItems : showMore}
-            isStretched
           />
         </div>
       </Container>

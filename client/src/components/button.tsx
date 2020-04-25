@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, FC } from "react";
 import cog from "../assets/cog.svg";
 import calendar from "../assets/calendar.svg";
 import close from "../assets/close.svg";
@@ -8,7 +8,20 @@ import rebuild from "../assets/rebuild.svg";
 import { StyleSheet, css } from "aphrodite";
 import { Link } from "react-router-dom";
 
-export const Button = ({
+interface OwnProps {
+  id?: string;
+  text: string | undefined;
+  type: string;
+  size: string;
+  link?: string;
+  iconType?: string;
+  buildId?: string;
+  withoutIcon?: boolean;
+  isDisabled?: boolean;
+  onClick?: () => void;
+}
+
+export const Button: FC<OwnProps> = ({
   link,
   text,
   iconType,
@@ -75,7 +88,7 @@ export const Button = ({
         {!!text && <span>{text}</span>}
       </button>
     );
-  }, [onClick, text, icon, size, withoutIcon, typeClass, isDisabled]);
+  }, [onClick, text, icon, size, withoutIcon, typeClass, isDisabled, id]);
 
   if (isDisabled) {
     return body;

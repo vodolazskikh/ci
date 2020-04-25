@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, FC } from "react";
 import { StyleSheet, css } from "aphrodite";
 import commit from "../assets/commit.svg";
 import user from "../assets/user.svg";
@@ -8,8 +8,14 @@ import inprogress from "../assets/inprogress.svg";
 import done from "../assets/done.svg";
 import close from "../assets/close.svg";
 import { Link } from "react-router-dom";
+import { Build } from "../types/state";
 
-export const Card = ({ build, atrId }) => {
+interface OwnProps {
+  build: Build;
+  atrId?: number;
+}
+
+export const Card: FC<OwnProps> = ({ build, atrId }) => {
   const {
     status = "done",
     authorName,

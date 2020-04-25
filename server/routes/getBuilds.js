@@ -4,6 +4,7 @@ const state = require("../state");
 
 module.exports = function (app, axiosInstance) {
   app.get("/api/builds", function (req, res) {
+    console.log("token", `${dbApiUrl}api/build/list?limit=25`);
     axiosInstance
       .get(`${dbApiUrl}api/build/list?limit=25`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -13,6 +14,6 @@ module.exports = function (app, axiosInstance) {
         state.builds = response.data.data;
         return res.send(response.data);
       })
-      .catch((err) => res.send("Ошибка"));
+      .catch((err) => res.send(`Ошибка ${err}`));
   });
 };

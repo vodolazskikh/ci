@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { useParams } from "react-router-dom";
 import { Footer } from "../components/footer";
 import { Header } from "../components/header";
@@ -8,16 +8,16 @@ import { useSelector } from "react-redux";
 import { getConfig } from "../selectors/getConfig";
 import { getBuildById } from "../selectors/getBuildById";
 
-export const Details = props => {
+export const Details: FC = () => {
   const { id } = useParams();
-  const { repo } = useSelector(state => getConfig(state));
-  const build = useSelector(state => getBuildById(state, id));
+  const { repoName } = useSelector(getConfig);
+  const build = useSelector((state) => getBuildById(state as any, id));
 
   return (
     <>
-      <Header hasRebuildButton hasSettingsButton title={repo} />
+      <Header hasRebuildButton hasSettingsButton title={repoName} />
       <Container>
-        {build ? <Card build={build} /> : "There is no same build"}
+        {build ? <Card build={build} atrId={0} /> : "There is no same build"}
       </Container>
       <Footer />
     </>
