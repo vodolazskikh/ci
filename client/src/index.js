@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
 import { rootReducer } from "./reducers";
 import thunk from "redux-thunk";
+import * as serviceWorker from "./serviceWorkerRegistration";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -19,3 +20,5 @@ ReactDOM.render(
   </Provider>,
   document.getElementById("root")
 );
+
+serviceWorker.register();
