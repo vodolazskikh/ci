@@ -1,7 +1,12 @@
 {
   "translations": {
+    "Learning": "Обучение",
     "Open Settings": "Открыть настройки",
     "Support": "Поддержка",
-    "Learning": "Обучение"
+    "Configure repository connection and synchronization settings": "Настроить соединение с репозиторием и параметры синхронизации",
+    "School CI server": "Школьный CI сервер",
+    "Run build": "Запустить сборку",
+    "Rebuild": "Пересобрать",
+    "Settings": "Настройки"
   }
 }
