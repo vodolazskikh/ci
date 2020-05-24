@@ -1,12 +1,23 @@
 import React from "react";
 import { StyleSheet, css } from "aphrodite";
+import i18n from "../lang/i18n";
 
 export const Footer = () => {
+  const currentLang = i18n.language;
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
   return (
     <footer className={css(s.footer)}>
       <span>
         <span className={css(s.text, s.link)}>Support</span>
         <span className={css(s.text, s.link)}>Learning</span>
+        <span
+          className={css(s.text, s.link)}
+          onClick={() => changeLanguage(currentLang === "en" ? "ru" : "en")}
+        >
+          {currentLang === "en" ? "Русская версия" : "English Language"}
+        </span>
       </span>
       <span className={css(s.text)}>© 2020 Your Name</span>
     </footer>
@@ -20,24 +31,22 @@ const s = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-    userSelect: "none"
+    userSelect: "none",
   },
 
   text: {
     fontSize: "var(--font-size-s)",
     lineHeight: "var(--line-height-xxs)",
-    color: "var(--color-text-gray)"
+    color: "var(--color-text-gray)",
   },
 
   link: {
-    ":first-child": {
-      marginRight: "var(--indent-xxs)"
-    },
+    marginRight: "var(--indent-xxs)",
     ":hover": {
       cursor: "pointer",
-      color: "var(--color-background-accent)"
-    }
-  }
+      color: "var(--color-background-accent)",
+    },
+  },
 
   // @media (max-width: 768px) {
   //   .footer {

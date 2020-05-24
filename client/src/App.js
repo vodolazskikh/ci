@@ -12,6 +12,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchBuilds } from "./actions/fetchBuilds";
 import { getBuilds } from "./selectors/getBuilds";
 import { getConfig as getConfigAction } from "./actions/getConfig";
+import i18n from "./lang/i18n";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -20,7 +21,11 @@ export default function App() {
     dispatch(getConfigAction(dispatch));
   }, [dispatch]);
 
-  const builds = useSelector(state => getBuilds(state));
+  useEffect(() => {
+    i18n.changeLanguage("en");
+  }, []);
+
+  const builds = useSelector((state) => getBuilds(state));
 
   const home = useMemo(() => {
     if (!builds.length) {
