@@ -5,8 +5,10 @@ import { Button } from "./button";
 import { setConfig } from "../actions/setConfig";
 import { useDispatch, useSelector } from "react-redux";
 import { getConfig } from "../selectors/getConfig";
+import { useTranslation } from "react-i18next";
 
 export const Form = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const config = useSelector((state) => getConfig(state));
 
@@ -42,33 +44,33 @@ export const Form = () => {
     <div className={css(s.form)}>
       <h1 className={css(s.title)}>Settings</h1>
       <p className={css(s.description)}>
-        Configure repository connection and synchronization settings.
+        {t("Configure repository connection and synchronization settings.")}
       </p>
       <Input
-        title="GitHub repository"
+        title={t("GitHub repository")}
         isRequired
-        placeholder="user-name/repo-name"
+        placeholder={t("user-name/repo-name")}
         size="big"
         initialValue={config.repoName}
         onChange={handleInputRepoChange}
       />
       <Input
-        title="Build command"
+        title={t("Build command")}
         isRequired
-        placeholder="npm ci && npm run build"
+        placeholder={t("npm ci && npm run build")}
         size="big"
         initialValue={config.buildCommand}
         onChange={handleInputCommantChange}
       />
       <Input
-        title="Main branch"
+        title={t("Main branch")}
         placeholder="master"
         size="big"
         initialValue={config.mainBranch}
         onChange={handleInputBranchChange}
       />
       <div className={css(s.time)}>
-        <span className={css(s.text)}>Synchronize every</span>
+        <span className={css(s.text)}>{t("Synchronize every")}</span>
         <Input
           type="text"
           size="small"
@@ -83,7 +85,7 @@ export const Form = () => {
           <Button
             type="action"
             size="primary"
-            text="Save"
+            text={t("Save")}
             link="history"
             onClick={handleSaveClick}
             isDisabled={!branch || !repo || !command}
@@ -93,7 +95,7 @@ export const Form = () => {
         <Button
           type="control"
           size="primary"
-          text="Cancel"
+          text={t("Cancel")}
           link={!config.repoName ? " " : "history"}
           id="closeSettingsButton"
         />

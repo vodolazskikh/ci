@@ -22,7 +22,7 @@ export const Footer = () => {
           {currentLang === "en" ? "Русская версия" : "English Language"}
         </span>
       </span>
-      <span className={css(s.text)}>© 2020 Your Name</span>
+      <span className={css(s.text)}>{t("© 2020 Your Name")}</span>
     </footer>
   );
 };
