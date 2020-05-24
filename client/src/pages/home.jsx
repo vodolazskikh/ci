@@ -15,11 +15,12 @@ export const Home = () => {
       <Header hasSettingsButton hasSettingsButtonText />
       <Container screen="start" id="mainPage">
         <img src={tools} className={css(s.tools)} alt="tools" />
-        <p className={css(s.text)}>
-          {t("Configure repository connection")}
+        <pre className={css(s.text)}>
+          {t(
+            "Configure repository connection \r\n and synchronization settings"
+          )}
           <br />
-          and synchronization settings
-        </p>
+        </pre>
         <Button
           text={t("Open Settings")}
           type="action"

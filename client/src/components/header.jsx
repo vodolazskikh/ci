@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "./button";
 import { StyleSheet, css } from "aphrodite";
+import { useTranslation } from "react-i18next";
 
 export const Header = ({
   hasSettingsButton,
@@ -10,16 +11,18 @@ export const Header = ({
   hasRebuildButton,
   onBuildButtonClick,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <header className={css(s.root)}>
       <span className={css(s.title, title && s._repoTitle)} id="title">
-        {title || "School CI server"}
+        {title || t("School CI server")}
       </span>
       <span>
         {hasBuildButton && (
           <span className={css(s.buttonblockButton)}>
             <Button
-              text="Run build"
+              text={t("Run build")}
               size="secondary"
               type="control"
               iconType="play"
@@ -31,7 +34,7 @@ export const Header = ({
         {hasRebuildButton && (
           <span className={css(s.buttonblockButton)}>
             <Button
-              text="Rebuild"
+              text={t("Rebuild")}
               size="secondary"
               type="control"
               iconType="rebuild"
@@ -42,7 +45,7 @@ export const Header = ({
 
         {hasSettingsButton && (
           <Button
-            text={hasSettingsButtonText && "Settings"}
+            text={hasSettingsButtonText && t("Settings")}
             size="secondary"
             type="control"
             link="settings"

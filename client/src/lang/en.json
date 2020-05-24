@@ -1,8 +1,12 @@
 {
   "translations": {
-    "Configure repository connection": "Configure repository connection",
+    "Configure repository connection and synchronization settings": "Configure repository connection and synchronization settings",
     "Open Settings": "Open Settings",
     "Support": "Support",
-    "Language": "Language"
+    "Learning": "Learning",
+    "School CI server": "School CI server",
+    "Run build": "Run build",
+    "Rebuild": "Rebuild",
+    "Settings": "Settings"
   }
 }

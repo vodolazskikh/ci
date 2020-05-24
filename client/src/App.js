@@ -22,7 +22,8 @@ export default function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    i18n.changeLanguage("en");
+    const userLang = window.navigator.language;
+    i18n.changeLanguage(userLang !== "ru-RU" ? "en" : "ru");
   }, []);
 
   const builds = useSelector((state) => getBuilds(state));
