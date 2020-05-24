@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, css } from "aphrodite";
-import i18n from "../lang/i18n";
+import i18n from "../i18n/i18n";
 import { useTranslation } from "react-i18next";
 
 export const Footer = () => {

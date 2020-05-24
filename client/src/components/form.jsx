@@ -42,7 +42,7 @@ export const Form = () => {
   }, [branch, repo, command, period, dispatch]);
   return (
     <div className={css(s.form)}>
-      <h1 className={css(s.title)}>Settings</h1>
+      <h1 className={css(s.title)}>{t("Settings")}</h1>
       <p className={css(s.description)}>
         {t("Configure repository connection and synchronization settings.")}
       </p>
@@ -57,7 +57,7 @@ export const Form = () => {
       <Input
         title={t("Build command")}
         isRequired
-        placeholder={t("npm ci && npm run build")}
+        placeholder="npm ci && npm run build"
         size="big"
         initialValue={config.buildCommand}
         onChange={handleInputCommantChange}
@@ -78,7 +78,7 @@ export const Form = () => {
           onChange={handleInputPeriodChange}
           initialValue={config.period}
         />
-        <span className={css(s.text)}>minutes</span>
+        <span className={css(s.text)}>{t("minutes")}</span>
       </div>
       <div className={css(s.buttonblock)}>
         <div className={css(s.firstButton)}>

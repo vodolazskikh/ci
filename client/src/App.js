@@ -12,7 +12,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchBuilds } from "./actions/fetchBuilds";
 import { getBuilds } from "./selectors/getBuilds";
 import { getConfig as getConfigAction } from "./actions/getConfig";
-import i18n from "./lang/i18n";
+import i18n from "./i18n/i18n";
 
 export default function App() {
   const dispatch = useDispatch();
