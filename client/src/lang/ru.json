@@ -4,5 +4,11 @@
       "Configure repository connection": "Настройки подключение к репозиторию",
       "Open Settings": "Открыть настройки"
     }
+  },
+  "en": {
+    "translations": {
+      "Configure repository connection": "Настроить соединение с репозиторием",
+      "Open Settings": "Открыть настройки"
+    }
   }
 }
