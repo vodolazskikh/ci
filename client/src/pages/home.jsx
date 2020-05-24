@@ -5,20 +5,24 @@ import { Button } from "../components/button";
 import { Container } from "../components/container";
 import tools from "../assets/tools.svg";
 import { css, StyleSheet } from "aphrodite";
+import { useTranslation } from "react-i18next";
 
 export const Home = () => {
+  const { t } = useTranslation();
+
   return (
     <>
       <Header hasSettingsButton hasSettingsButtonText />
       <Container screen="start" id="mainPage">
         <img src={tools} className={css(s.tools)} alt="tools" />
-        <p className={css(s.text)}>
-          Configure repository connection
+        <pre className={css(s.text)}>
+          {t(
+            "Configure repository connection \r\n and synchronization settings"
+          )}
           <br />
-          and synchronization settings
-        </p>
+        </pre>
         <Button
-          text="Open settings"
+          text={t("Open Settings")}
           type="action"
           size="primary"
           link="settings"

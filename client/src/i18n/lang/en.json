@@ -1,0 +1,24 @@
+{
+  "translations": {
+    "Configure repository connection \r\n and synchronization settings": "Configure repository connection \r\n and synchronization settings",
+    "Open Settings": "Open Settings",
+    "Support": "Support",
+    "Learning": "Learning",
+    "School CI server": "School CI server",
+    "Run build": "Run build",
+    "Rebuild": "Rebuild",
+    "Settings": "Settings",
+    "© 2020 Your Name": "© 2020 Your Name",
+    "user-name/repo-name": "user-name/repo-name",
+    "Build command": "Build command",
+    "Main branch": "Main branch",
+    "Synchronize every": "Synchronize every",
+    "minutes": "minutes",
+    "Save": "Save",
+    "Cancel": "Cancel",
+    "Enter the commit hash which you want to build": "Enter the commit hash which you want to build",
+    "There is no same build": "There is no same build",
+    "Hide": "Hide",
+    "Show more": "Show more"
+  }
+}

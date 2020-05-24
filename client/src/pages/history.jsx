@@ -8,6 +8,7 @@ import { Popup } from "../components/popup";
 import { useSelector } from "react-redux";
 import { getBuilds } from "../selectors/getBuilds";
 import { getConfig } from "../selectors/getConfig";
+import { useTranslation } from "react-i18next";
 
 export const History = () => {
   const [isPopupOpened, setIsPopupOpened] = useState(false);
@@ -15,6 +16,7 @@ export const History = () => {
   const config = useSelector((state) => getConfig(state));
   const [splicedBuilds, setSplicedBuilds] = useState([...builds].splice(0, 5));
   const [isMoreDisplayed, setIsMoreDisplayed] = useState(false);
+  const { t } = useTranslation();
 
   const closePopup = useCallback(() => {
     return setIsPopupOpened(false);
@@ -46,7 +48,7 @@ export const History = () => {
           <Button
             type="control"
             size="secondary"
-            text={isMoreDisplayed ? "Hide" : "Show more"}
+            text={isMoreDisplayed ? t("Hide") : t("Show more")}
             onClick={isMoreDisplayed ? hideItems : showMore}
             isStretched
           />

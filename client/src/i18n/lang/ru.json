@@ -1,0 +1,25 @@
+{
+  "translations": {
+    "Learning": "Обучение",
+    "Open Settings": "Открыть настройки",
+    "Rebuild": "Пересобрать",
+    "Run build": "Запустить сборку",
+    "School CI server": "Школьный CI сервер",
+    "Settings": "Настройки",
+    "Support": "Поддержка",
+    "© 2020 Your Name": "© 2020 Имя ученика",
+    "Configure repository connection and synchronization settings.": "Настройте соединение с репозиторием и настройки синхронизации.",
+    "user-name/repo-name": "имя юзера/название репозитория",
+    "Build command": "Команда для сборки",
+    "Main branch": "Основная ветка",
+    "Synchronize every": "Синхронизировать каждые",
+    "minutes": "мин.",
+    "Save": "Сохранить",
+    "Cancel": "Отмена",
+    "Enter the commit hash which you want to build": "Введите хеш коммита, который вы хотите собрать",
+    "There is no same build": "Нет такой сборки",
+    "Hide": "Скрыть",
+    "Show more": "Показать больше",
+    "Configure repository connection \r\n and synchronization settings": "Настроить соединение с репозиторием \r\n и параметры синхронизации"
+  }
+}

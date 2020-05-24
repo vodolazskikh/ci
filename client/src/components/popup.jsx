@@ -2,8 +2,10 @@ import React, { useCallback, useState } from "react";
 import { css, StyleSheet } from "aphrodite";
 import { Input } from "./input";
 import { Button } from "./button";
+import { useTranslation } from "react-i18next";
 
 export const Popup = ({ onCloseClick }) => {
+  const { t } = useTranslation();
   const [buildId, setBuildId] = useState("");
   const handleInputChange = useCallback((e) => {
     const value = e.currentTarget.value;
@@ -14,7 +16,7 @@ export const Popup = ({ onCloseClick }) => {
       <div className={css(s.popup)} id="newBuildPopup">
         <div className={css(s.title)}>New build</div>
         <div className={css(s.description)}>
-          Enter the commit hash which you want to build
+          {t("Enter the commit hash which you want to build")}
         </div>
         <Input
           placeholder="Commit hash"
@@ -24,7 +26,7 @@ export const Popup = ({ onCloseClick }) => {
         <div>
           <div className={css(s.firstButton)}>
             <Button
-              text="Run build"
+              text={t("Run build")}
               withoutIcon
               size="primary"
               type="action"
@@ -33,7 +35,7 @@ export const Popup = ({ onCloseClick }) => {
             />
           </div>
           <Button
-            text="Cancel"
+            text={t("Cancel")}
             withoutIcon
             size="primary"
             type="base"
